@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello CategoryController!{% endblock %}
+
+{% block body %}
+<br>
+<br>
+<form name="frm" method="post" action="">
+        <h1>Product Category</h1>
+        <p>
+            <img src="image/add.png" alt="" width="16" height="16" border="0" /> <a href="{{path('addCategory')}}"> Add New</a>
+        </p>
+        <table id="tablecategory" class="table table-striped table-bordered" cellspacing="0" width="100%">
+            <thead>
+                <tr>
+                    <th><strong>No.</strong></th>
+                    <th><strong>Category Name</strong></th>
+                    <th><strong>Desscription</strong></th>
+                    <th><strong>Edit</strong></th>
+                    <th><strong>Delete</strong></th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for c in category %}
+                <tr>
+                        <td class="text-center"></td>
+                        <td>{{c.CatName}} </td>
+                        <td>{{c.CatDes}} </td>
+                        <td style='text-align:center'>
+                            <a href="{{path('editCategory', {id:c.id})}}">
+                                <img src='image/edit.png' width="16" height="16" border='0'/>
+                            </a>
+                        </td>
+                        <td style='text-align:center'>
+                            <a href="{{path('deleteCategory', {id:c.id})}}" onclick="return confirm('Are you sure to delete?')">
+                            <img src='image/delete.png' width="16" height="16" border="0" /></a></td>
+                    </tr>
+            {% endfor %}
+                    
+            </tbody>
+        </table>
+</form>
+{% endblock %}

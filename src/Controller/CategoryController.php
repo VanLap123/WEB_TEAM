@@ -37,8 +37,8 @@ class CategoryController extends AbstractController
         if($categoryForm->isSubmitted() && $categoryForm->isValid())
         {
             $data = $categoryForm->getData();
-            $category->setCatName($data->getCatName());
-            $category->setCatDes($data->getCatDes());
+            $category->getCatName($data->getCatName());
+            $category->getCatDes($data->getCatDes());
  
             $err = $valid->validate($category);
             if (count($err) > 0) {

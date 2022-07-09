@@ -19,7 +19,7 @@ class ProductController extends AbstractController
      */
     public function showProductAction(ProductRepository $repo): Response
     {
-        $product = $repo->findAll();
+        $product = $repo->showAllProduct();
         return $this->render('product/index.html.twig',[
             'product'=> $product
         ]);
@@ -41,7 +41,6 @@ class ProductController extends AbstractController
             $product->setPrice($data-> getPrice());
             $product->setOldPrice($data->getOldPrice());
             $product->setProDesc($data-> getProDesc());
-            $product->setProDate($data->getProDate());
             $product->setProQty($data->getProQty());
             $product->setProImage($data->getProImage());
             $product->setCat($data->getCat());
@@ -62,7 +61,7 @@ class ProductController extends AbstractController
     ]);
   }
       /**
-     * @Route("/edit/{id}", name="editProduct")
+     * @Route("/edit_pro/{id}", name="editProduct")
      */
     public function editProductAction(ManagerRegistry $res, Request $req, ValidatorInterface $valid, ProductRepository $repo, $id): Response
     {
@@ -78,7 +77,6 @@ class ProductController extends AbstractController
           $product->setPrice($data-> getPrice());
           $product->setOldPrice($data->getOldPrice());
           $product->setProDesc($data-> getProDesc());
-          $product->setProDate($data->getProDate());
           $product->setProQty($data->getProQty());
           $product->setProImage($data->getProImage());
           $product->setCat($data->getCat());
@@ -97,5 +95,20 @@ class ProductController extends AbstractController
     }
 }
 
-
+    /**
+     * @Route("/delete_pro/{id}", name="deleteProduct")
+     */
+    public function deleteCategoryFunction(ProductRepository $repo, ManagerRegistry $doc, $id): Response
+    {
+        $product = $repo->find($id);
+ 
+        if (!$product) {
+            throw
+            $this->createNotFoundException('Invalid ID ' . $id);
+        }
+        $entity = $doc->getManager();
+        $entity->remove($product);
+        $entity->flush();
+        return $this->redirectToRoute("app_product");
+    }
 

@@ -16,11 +16,9 @@
                     <th><strong>No.</strong></th>
                     <th><strong>Product Name</strong></th>
                     <th><strong>Price</strong></th>
-                    <th><strong>Old Price</strong></th>
                     <th><strong>Description</strong></th>
-                    <th><strong>Date</strong></th>
                     <th><strong>Quantity</strong></th>
-                    <th><strong>Category ID</strong></th>
+                    <th><strong>Category</strong></th>
                     <th><strong>Image</strong></th>
                     <th><strong>Edit</strong></th>
                     <th><strong>Delete</strong></th>
@@ -30,23 +28,21 @@
             {% for p in product %}
                  <tr>
                          <td class="text-center">{{p.id}}</td>
-                         <td>{{p.ProName}} </td>
+                         <td>{{p.Pro_Name}} </td>
                          <td>{{p.Price}}   </td>
-                         <td>{{p.OldPrice}}</td>
-                         <td>{{p.ProDesc}} </td>
-                         <td>{{p.ProDate}} </td>
-                         <td>{{p.ProQty}}  </td>
-                         <td>{{p.Cat}}     </td>
+                         <td>{{p.Pro_Desc}} </td>
+                         <td>{{p.Pro_qty}}  </td>
+                         <td>{{p.Cat_Name}}     </td>
                         <td align='center'>
                             <img src='imgProduct/<?php echo $row["Pro_image"] ?>' border='0' width="50" height="50" />
                         </td>
                         <td align='center'>
-                            <a href="?page=update_product&&id=<?php echo $row['Product_ID']; ?>"> 
+                            <a href="{{path('editProduct', {id:p.id})}}"> 
                                 <img src="image/edit.png" width="16" height="16" border='0' />
                             </a>
                         </td>
                             <td align='center'>
-                                <a href="?page=product_management&&function=del&&id=<?php echo $row["Product_ID"]; ?>" onclick="return deleteConfirm()">
+                                <a href="{{path('deleteProduct', {id:p.id})}}" onclick="return deleteConfirm()">
                                     <img src="image/delete.png" border='0' width="16" height="16" /></a>
                             </td>
                     </tr>

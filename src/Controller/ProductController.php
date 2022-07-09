@@ -93,9 +93,7 @@ class ProductController extends AbstractController
           'form' => $productForm->createView()
         ]);
     }
-}
-
-    /**
+        /**
      * @Route("/delete_pro/{id}", name="deleteProduct")
      */
     public function deleteCategoryFunction(ProductRepository $repo, ManagerRegistry $doc, $id): Response
@@ -111,4 +109,6 @@ class ProductController extends AbstractController
         $entity->flush();
         return $this->redirectToRoute("app_product");
     }
+}
+
 

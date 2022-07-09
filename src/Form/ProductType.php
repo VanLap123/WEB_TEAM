@@ -6,7 +6,7 @@ use App\Entity\Product;
 
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -27,11 +27,8 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
         ->add('Price', TextType::class)
         ->add('Old_Price', TextType::class)
         ->add('Pro_Desc', TextType::class)
-        ->add('Pro_Date', DateTimeType::class,[
-            'widget'=>'single_text'
-        ])
         ->add('Pro_qty', TextType::class)
-        ->add('Pro_Image', TextType::class)
+        ->add('Pro_Image', FileType::class)
         ->add('cat', EntityType::class,[
             'class'=>Category::class,
             'choice_label'=>'Cat_Name'

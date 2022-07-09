@@ -39,6 +39,18 @@ class ProductRepository extends ServiceEntityRepository
         }
     }
 
+    // SELECT * from  product p INNER JOIN category c ON p.Cat_ID=c.ID
+    /**
+     * @return Product[]
+     */
+    public function showAllProduct():array
+    {
+        $query= $this->createQueryBuilder('p')
+        ->select('p.id, p.Pro_Name, p.Price, p.Pro_Desc, p.Pro_qty, p.Pro_Image, c.Cat_Name')
+        ->innerJoin('p.Cat','c');
+        return $query->getQuery()->execute();
+    }
+    
 //    /**
 //     * @return Product[] Returns an array of Product objects
 //     */

@@ -38,11 +38,6 @@ class Product
     private $Pro_Desc;
 
     /**
-     * @ORM\Column(type="date")
-     */
-    private $Pro_Date;
-
-    /**
      * @ORM\Column(type="integer")
      */
     private $Pro_qty;
@@ -106,18 +101,6 @@ class Product
     public function setProDesc(string $Pro_Desc): self
     {
         $this->Pro_Desc = $Pro_Desc;
-
-        return $this;
-    }
-
-    public function getProDate(): ?\DateTimeInterface
-    {
-        return $this->Pro_Date;
-    }
-
-    public function setProDate(\DateTimeInterface $Pro_Date): self
-    {
-        $this->Pro_Date = $Pro_Date;
 
         return $this;
     }

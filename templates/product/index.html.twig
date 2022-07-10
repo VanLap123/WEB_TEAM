@@ -33,7 +33,7 @@
                          <td>{{p.Pro_qty}}  </td>
                          <td>{{p.Cat_Name}}     </td>
                         <td align='center'>
-                            <img src='imgProduct/<?php echo $row["Pro_image"] ?>' border='0' width="50" height="50" />
+                            <img src='{{path('get_image', { filename: p.Pro_Image }) }}' border='0' width="50" height="50" />
                         </td>
                             <td align='center'>
                                 <a href="{{path('deleteProduct', {id:p.id})}}" onclick="return deleteConfirm()">

@@ -85,6 +85,18 @@ public function addProductAction(ManagerRegistry $res, SluggerInterface $slugger
         $entity->flush();
         return $this->redirectToRoute("app_product");
     }
+    
+    /**
+     * @Route("/product/getImage/{filename}", name="get_image")
+     */
+    public function getImage($filename): Response
+    {
+        $file = $this->getParameter('image_pro') . '/' . $filename;
+        $response = new Response();
+        $response->headers->set('Content-Type', 'image/jpg');
+        $response->setContent(file_get_contents($file));
+        return $response;
+    }
 }
 
   

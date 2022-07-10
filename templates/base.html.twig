@@ -18,36 +18,46 @@
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         {% endblock %}
-        
+       	</head>
+	<body>
         <header class="sticky-top">
-                                                <div class="container">
-                                                    <div class="row">
-                                                        <div class="col-2 menu">
-                                                            <a>DOL Store</a>
-                                                        </div>
-                                                        <div class="col-2">
+        	<div class="container">
+                	<div class="row">
+                        	<div class="col-2 menu">
+                                	<a>DOL Store</a>
+                                </div>
+                          	<div class="col-2"></div>
+                                        <div class="col-8 menu">
+                                               	<ul>
+							<li>
+								<a href="{{path('app_home')}}">HOME</a>
+							</li>
+							<li>
+								<a href="">Management</a>
+								<ul class="menu_child">
+									<li>
+										<a href="{{path('app_category')}}">Category</a>
+									</li>
+									<li>
+										<a href="{{path('app_product')}}">Product</a>
+									</li>
 
-                                                        </div>
-                                                        <div class="col-8 menu">
-                                                            <ul>
-                                                                <li><a href="{{path('app_home')}}">HOME</a></li>
-                                                                <li><a href="">Management</a>
-                                                                    <ul class="menu_child">
-                                                                        <li><a href="{{path('app_category')}}">Category</a></li>
-                                                                        <li><a href="{{path('app_product')}}">Product</a></li>
+								</ul>
+							</li>
 
-                                                                    </ul>
-                                                                </li>
-                                                                
-                                                               
-                                                                    <li><a href="?page=login">Login</a></li>
-                                                                    <li><a href="?page=register">Register</a></li>
-                                                                
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </header>
+
+							<li>
+								<a href="{{path('app_login')}}">Sign in</a>
+							</li>
+							<li>
+								<a href="{{path('app_registration')}}">Register</a>
+							</li>
+
+						</ul>
+                                   	</div>
+                           	</div>
+                    	</div>
+          </header>
     </head>
 
     <body>
@@ -134,16 +144,5 @@
                                                     </div>
                                                 </div>
                                             </footer>
-                                        </body>
-
-
-                                        
-        
-        
-        {% endblock %}
     </body>
-
-
-
-
 </html>

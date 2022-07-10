@@ -98,6 +98,3 @@ public function addProductAction(ManagerRegistry $res, SluggerInterface $slugger
         return $response;
     }
 }
-
-  
-

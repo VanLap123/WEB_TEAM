@@ -7,9 +7,11 @@ use App\Form\ProductType;
 use App\Repository\ProductRepository;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\String\Slugger\SluggerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class ProductController extends AbstractController
@@ -27,7 +29,7 @@ class ProductController extends AbstractController
    /**
    * @Route("/product/add", name="addProduct")
    */
-  public function addProductAction(ManagerRegistry $res, Request $req, ValidatorInterface $valid): Response
+public function addProductAction(ManagerRegistry $res, SluggerInterface $slugger, Request $req, ValidatorInterface $valid): Response
   {
         $product = new Product();
         $productForm =$this->createForm(ProductType::class, $product);
@@ -42,15 +44,21 @@ class ProductController extends AbstractController
             $product->setOldPrice($data->getOldPrice());
             $product->setProDesc($data-> getProDesc());
             $product->setProQty($data->getProQty());
-            $product->setProImage($data->getProImage());
-            $product->setCat($data->getCat());
             
-
-
-      $err = $valid->validate($product);
-      if (count($err) > 0) {
-        $string_err = (string)$err;
-        return new Response($string_err, 400);
+            $imgFile = $productForm->get('Pro_Image')->getData();
+            if ($imgFile) {
+                $originalFilename = pathinfo($imgFile->getClientOriginalName(), PATHINFO_FILENAME);
+                $safeFilename = $slugger->slug($originalFilename);
+                $newFilename = $safeFilename . '-' . uniqid() . '.' . $imgFile->guessExtension();
+                try {
+                    $imgFile->move(
+                        $this->getParameter('image_pro'),
+                        $newFilename
+                    );
+                } catch (FileException $e) {
+                    echo $e;
+                }
+                $product->setProImage($newFilename);
       }
       $entity->persist($product);
       $entity->flush();

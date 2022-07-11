@@ -25,11 +25,6 @@ class Customer
     private $Cust_Name;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $Gender;
-
-    /**
      * @ORM\Column(type="string", length=500)
      */
     private $Address;
@@ -39,11 +34,7 @@ class Customer
      */
     private $Telephone;
 
-    /**
-     * @ORM\Column(type="date")
-     */
-    private $Birthday;
-
+   
     /**
      * @ORM\OneToMany(targetEntity=Orders::class, mappedBy="Cus")
      */
@@ -71,18 +62,6 @@ class Customer
         return $this;
     }
 
-    public function isGender(): ?bool
-    {
-        return $this->Gender;
-    }
-
-    public function setGender(bool $Gender): self
-    {
-        $this->Gender = $Gender;
-
-        return $this;
-    }
-
     public function getAddress(): ?string
     {
         return $this->Address;
@@ -103,18 +82,6 @@ class Customer
     public function setTelephone(string $Telephone): self
     {
         $this->Telephone = $Telephone;
-
-        return $this;
-    }
-
-    public function getBirthday(): ?\DateTimeInterface
-    {
-        return $this->Birthday;
-    }
-
-    public function setBirthday(\DateTimeInterface $Birthday): self
-    {
-        $this->Birthday = $Birthday;
 
         return $this;
     }

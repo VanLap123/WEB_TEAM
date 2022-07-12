@@ -54,24 +54,24 @@ dots[slideIndex - 1].className += " active";
 setTimeout(showSlides, 2000); // Change image every 2 seconds
 }
 	</script>
-
+	
 	<div class="row">
 		{% for p in product %}
-			<div class="col-2">
+			<div class="col-2th">
 				<div class="card">
-					<div>
-						<img src='{{path('get_image', { filename: p.Pro_Image }) }}' width="260" height="220" alt=""></div>
-					<div>
-						<h3>
-							<a href="#" class="text-default mb-2" data-abc="true">
-								{{p.Pro_Name}}
-							</a>
-						</h3>
+					<div class="card1">
+						<img src='{{path('get_image', { filename: p.Pro_Image }) }}' width="260" height="260" alt="">
 					</div>
-					<div>
-						<h3 class="mb-0 font-weight-semibold">
-							{{p.Price}}
-						</h3>
+					<div class="card2">
+						<h4>
+								{{p.Pro_Name}}
+							
+						</h4>
+					</div>
+					<div class="card2">
+						<h5>
+							{{p.Price}}VND
+						</h5>
 					</div>
 				</div>
 			</div>

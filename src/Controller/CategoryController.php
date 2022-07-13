@@ -40,18 +40,10 @@ class CategoryController extends AbstractController
             $category->getCatName($data->getCatName());
             $category->getCatDes($data->getCatDes());
  
-            $err = $valid->validate($category);
-            if (count($err) > 0) {
-                $string_err = (string)$err;
-                return new Response($string_err, 400);
-            }
+           
             $entity->persist($category);
             $entity->flush();
  
-            $this->addFlash(
-                'success',
-                'Your post was added'
-            );
             return $this->redirectToRoute("app_category");
         }
         return $this->render('category/Add_Cate.html.twig', [
